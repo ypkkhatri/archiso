@@ -3,7 +3,6 @@ package com.yog.fw.core.init;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.yog.fw", "com.yog.mt"})
-@Import(HibernateConfiguration.class)
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 	
 	@Bean

@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan({ "com.yog.fw.core.init" })
 @PropertySource(value = { "classpath:application.properties" })
 @EnableTransactionManagement(proxyTargetClass = true)
-public class HibernateConfiguration {
+public class HibernateConfig {
 
     @Autowired
     private Environment environment;
@@ -42,7 +42,7 @@ public class HibernateConfiguration {
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
+        dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driver"));
         dataSource.setUrl(environment.getRequiredProperty("jdbc.url"));
         dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
         dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
