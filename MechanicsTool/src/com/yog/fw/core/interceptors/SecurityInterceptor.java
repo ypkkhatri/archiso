@@ -9,7 +9,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * @author Yougeshwar
  * 
  * */
-public class RequestSecurityInterceptor extends HandlerInterceptorAdapter {
+public class SecurityInterceptor extends HandlerInterceptorAdapter {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
