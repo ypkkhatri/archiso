@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author Yougeshwar
+ * 
+ * */
 public class Criteria implements Serializable {
     private static final long serialVersionUID = -5451358360993226214L;
     

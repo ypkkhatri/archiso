@@ -1,12 +1,9 @@
 package com.yog.fw.core.dao;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.persistence.NoResultException;
-import javax.persistence.TypedQuery;
-import javax.sql.DataSource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
@@ -18,6 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yog.fw.core.utils.Criteria;
 import com.yog.mt.models.BaseModel;
+
+/**
+ * @author Yougeshwar
+ * 
+ * */
 
 @Repository
 @Transactional
@@ -38,14 +40,8 @@ public class Dao implements IDao, java.io.Serializable {
 	}
 
 	@Override
+	@Transactional
 	public void save(BaseModel model) {
-		if (model.getId() == null) {
-			model.setCreatedBy("none");
-			model.setCreationDate(new Date());
-		} else {
-			model.setUpdatedBy("none");
-			model.setUpdationDate(new Date());
-		}
 		getSession().persist(model);
 	}
 
@@ -55,11 +51,13 @@ public class Dao implements IDao, java.io.Serializable {
 	}
 
 	@Override
+	@Transactional
 	public void delete(BaseModel model) {
 		getSession().delete(model);
 	}
 
 	@Override
+	@Transactional
 	public <T extends BaseModel> int delete(Class<T> modelClass,
 			Criteria criteria) {
 		String jpql = "DELETE FROM " + modelClass.getSimpleName() + " m ";
@@ -69,6 +67,7 @@ public class Dao implements IDao, java.io.Serializable {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public <T extends BaseModel> T getSingleModel(Class<T> modelClass,
 			Criteria criteria) throws NoResultException {
 		String jpql = "SELECT m FROM " + modelClass.getSimpleName() + " m ";
@@ -80,6 +79,7 @@ public class Dao implements IDao, java.io.Serializable {
 	}
 
 	@Override
+	@Transactional
 	public <T extends BaseModel> Object getSingleValue(Class<T> modelClass,
 			String field, Criteria criteria) throws NoResultException {
 		String jpql = "SELECT " + field + " FROM " + modelClass.getSimpleName() + " m ";
@@ -92,6 +92,7 @@ public class Dao implements IDao, java.io.Serializable {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Transactional
 	public <T extends BaseModel> List<T> getModelList(
 			Class<? extends T> modelClass, Criteria criteria)
 			throws NoResultException {
@@ -102,12 +103,14 @@ public class Dao implements IDao, java.io.Serializable {
 	}
 
 	@Override
+	@Transactional
 	public <T extends BaseModel> List<T> getModelList(
 			Class<? extends T> modelClass) throws NoResultException {
 		return getModelList(modelClass, null);
 	}
 
 	@Override
+	@Transactional
 	public List<Object[]> getQueryList(String jpql, Criteria criteria)
 			throws NoResultException {
 //		TypedQuery<Object[]> query = getSession().createQuery(jpql, Object[].class);
@@ -183,13 +186,4 @@ public class Dao implements IDao, java.io.Serializable {
 		return jpql;
 	}
 
-//	protected void clearCache() {
-//		JpaHelper.getEntityManager(em).getServerSession()
-//				.getIdentityMapAccessor().invalidateAll();
-//	}
-
-	@Override
-	public DataSource getDataSource() {
-		return null;//dataSource;
-	}
 }

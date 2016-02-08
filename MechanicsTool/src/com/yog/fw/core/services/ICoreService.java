@@ -1,4 +1,4 @@
-package com.yog.fw.core.dao;
+package com.yog.fw.core.services;
 
 import java.util.List;
 
@@ -11,9 +11,7 @@ import com.yog.mt.models.BaseModel;
  * @author Yougeshwar
  * 
  * */
-
-public interface IDao {
-    public void clear();
+public interface ICoreService {
 
     public void save(BaseModel model);
 

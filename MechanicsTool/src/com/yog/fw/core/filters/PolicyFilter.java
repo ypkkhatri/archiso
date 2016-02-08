@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * Servlet Filter implementation class PolicyFilter
  */
+
 @WebFilter("/PolicyFilter")
 public class PolicyFilter implements Filter {
 

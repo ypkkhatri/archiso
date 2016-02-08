@@ -9,6 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+/**
+ * @author Yougeshwar
+ * 
+ * */
+
 @MappedSuperclass
 public abstract class BaseModel implements Serializable {
     
@@ -16,7 +21,7 @@ public abstract class BaseModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "XID", unique = true, nullable = false)
+    @Column(name = "ID", unique = true, nullable = false)
     protected Long id;
         
     @Column(name = "CREATED_BY")
