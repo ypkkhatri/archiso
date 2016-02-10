@@ -12,6 +12,7 @@ import javax.persistence.MappedSuperclass;
 /**
  * @author Yougeshwar
  * 
+ * Base model of all the models
  * */
 
 @MappedSuperclass
