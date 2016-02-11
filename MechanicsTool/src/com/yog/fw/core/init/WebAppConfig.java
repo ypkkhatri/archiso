@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.yog.fw.core.interceptors.SecurityInterceptor;
 
 /**
  * @author Yougeshwar
@@ -39,7 +40,8 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		super.addInterceptors(registry);
+		registry.addInterceptor(new SecurityInterceptor());
+//		super.addInterceptors(registry);
 	}
 	
 	@Bean

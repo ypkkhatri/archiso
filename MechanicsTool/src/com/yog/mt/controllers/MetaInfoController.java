@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yog.mt.business.metainfo.IMetaInfoBO;
+import com.yog.fw.core.annotations.Allow;
+import com.yog.mt.business.metainfo.IMetaInfoBM;
 import com.yog.mt.utils.ResponseBean;
 
 /**
@@ -19,14 +20,18 @@ import com.yog.mt.utils.ResponseBean;
 
 @RestController
 @RequestMapping(value = "/metainfo")
-public class MetaInfoController extends BaseController {
+public class MetaInfoController extends BaseController implements IMetaInfoController {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private IMetaInfoBO metaInfoBO;
+	private IMetaInfoBM metaInfoBM;
 	
+	@Override
+	@Allow
 	@RequestMapping(value = "/appversion", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseBean> getVersion() {
-		metaInfoBO.getVersion();
-		return new ResponseEntity<ResponseBean>(metaInfoBO.getResponse(), HttpStatus.OK);
+		metaInfoBM.getVersion();
+		return new ResponseEntity<ResponseBean>(metaInfoBM.getResponse(), HttpStatus.OK);
 	}
 }

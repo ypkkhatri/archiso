@@ -7,7 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import com.yog.fw.core.annotations.Validation;
-import com.yog.mt.enums.UserType;
+import com.yog.fw.core.enums.UserType;
 
 /**
  * Entity implementation class for Entity: User
