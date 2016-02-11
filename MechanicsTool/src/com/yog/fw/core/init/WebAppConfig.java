@@ -1,7 +1,6 @@
 package com.yog.fw.core.init;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.context.annotation.Bean;
@@ -56,7 +55,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public MappingJackson2HttpMessageConverter jsonConverter() {
 		MappingJackson2HttpMessageConverter ob = new MappingJackson2HttpMessageConverter();
-		ob.setPrefixJson(true);
+		//ob.setPrefixJson(true);
 		ob.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON));
 
 		ObjectMapper objectMapper = new ObjectMapper();
