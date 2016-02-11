@@ -1,11 +1,14 @@
 package com.yog.fw.core.init;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -21,13 +24,13 @@ import com.yog.fw.core.interceptors.SecurityInterceptor;
 /**
  * @author Yougeshwar
  * 
- * */
+ */
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.yog.fw", "com.yog.mt"})
+@ComponentScan(basePackages = { "com.yog.fw", "com.yog.mt" })
 public class WebAppConfig extends WebMvcConfigurerAdapter {
-	
+
 	@Bean
 	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -37,30 +40,28 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
 		return viewResolver;
 	}
-	
+
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new SecurityInterceptor());
-//		super.addInterceptors(registry);
+		super.addInterceptors(registry);
 	}
 	
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		converters.add(jsonConverter());
+		super.configureMessageConverters(converters);
+	}
+
 	@Bean
-	public MappingJackson2HttpMessageConverter jsonMessageConverter() {
+	public MappingJackson2HttpMessageConverter jsonConverter() {
 		MappingJackson2HttpMessageConverter ob = new MappingJackson2HttpMessageConverter();
 		ob.setPrefixJson(true);
-		ob.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
-		
+		ob.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON));
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.setSerializationInclusion(Include.NON_NULL);
 		ob.setObjectMapper(objectMapper);
 		return ob;
 	}
-	
-//	@Bean
-//	public MessageSource messageSource() {
-//	    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-//	    messageSource.setBasename("messages");
-//	    return messageSource;
-//	}
 }
-
