@@ -5,7 +5,7 @@ import com.yog.mt.business.AbstractBusinessModel;
 /**
  * @author Yougeshwar
  * 
- * Meta information of application
+ * User business model
  * */
 public class UserBM extends AbstractBusinessModel implements IUserBM {
 

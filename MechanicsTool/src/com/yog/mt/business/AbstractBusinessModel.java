@@ -27,10 +27,12 @@ public abstract class AbstractBusinessModel implements IBusinessModel {
 		return responseBean;
 	}
 	
+	@Override
 	public ICoreService getCoreService() {
 		return coreService;
 	}
 	
+	@Override
 	public IModelService getModelService() {
 		return modelService;
 	}
